@@ -151,19 +151,20 @@
 .hero {
     position: relative;
     z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     padding-top: 80px;
-    /* Further reduced from 100px */
     padding-bottom: 40px;
-    /* Further reduced from 60px */
 }
 
 .hero-content-wrapper {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     gap: 40px;
-    /* Reduced from 60px */
     align-items: center;
     text-align: left;
+    width: 100%;
 }
 
 
