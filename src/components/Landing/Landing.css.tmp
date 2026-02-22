@@ -1,0 +1,69 @@
+/* Widely scattered positions (0-100%) to fully avoid overlap */
+.item-conflicts {
+    top: 5%;
+    left: 4%;
+    animation: float-slow 6s infinite ease-in-out;
+    animation-delay: -2s;
+}
+
+.item-extraction {
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: float-slow 7s infinite ease-in-out;
+    animation-delay: -3s;
+}
+
+.item-ledger {
+    top: 8%;
+    right: 4%;
+    animation: float-slow 4s infinite ease-in-out;
+}
+
+.item-probes {
+    top: 45%;
+    left: 2%;
+    animation: float-slow 5.5s infinite ease-in-out;
+    animation-delay: -1.5s;
+}
+
+.item-history {
+    top: 28%;
+    right: 2%;
+    animation: float-slow 4.8s infinite ease-in-out;
+    animation-delay: -2.5s;
+}
+
+.item-math {
+    top: 90%;
+    left: 5%;
+    animation: float-slow 5s infinite ease-in-out;
+    animation-delay: -1s;
+}
+
+.item-signals {
+    top: 96%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: float-slow 6.5s infinite ease-in-out;
+    animation-delay: -4s;
+}
+
+.item-pacing {
+    top: 88%;
+    right: 5%;
+    animation: float-slow 4.5s infinite ease-in-out;
+    animation-delay: -0.5s;
+}
+
+.item-rubric {
+    top: 62%;
+    right: 2%;
+    animation: float-slow 4.2s infinite ease-in-out;
+    animation-delay: -0.8s;
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}

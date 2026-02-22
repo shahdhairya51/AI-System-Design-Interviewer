@@ -1,0 +1,159 @@
+[
+  {
+    "name": "Basic Decision",
+    "message": "I'll use Cassandra for high write throughput.",
+    "result": {
+      "newDecisions": [
+        {
+          "component": "database",
+          "choice": "Cassandra",
+          "reason": "high write throughput"
+        }
+      ],
+      "mathClaims": [],
+      "coverageSignals": [
+        {
+          "area": "databaseDesign",
+          "depth": 1
+        }
+      ],
+      "contradictions": []
+    }
+  },
+  {
+    "name": "Contradiction (SQL -> NoSQL)",
+    "message": "Actually, let's go with MongoDB instead of PostgreSQL since we need flexibility.",
+    "result": {
+      "newDecisions": [
+        {
+          "component": "database",
+          "choice": "MongoDB",
+          "reason": "need flexibility"
+        }
+      ],
+      "mathClaims": [],
+      "coverageSignals": [
+        {
+          "area": "databaseDesign",
+          "depth": 2
+        }
+      ],
+      "contradictions": [
+        {
+          "current": "MongoDB",
+          "prior": "PostgreSQL"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Math Claim (Correct)",
+    "message": "10 million users with 10 requests each is 100 million requests per day.",
+    "result": {
+      "newDecisions": [],
+      "mathClaims": [
+        {
+          "expression": "10 million users * 10 requests each",
+          "operands": [
+            10000000,
+            10
+          ],
+          "statedResult": 100000000
+        }
+      ],
+      "coverageSignals": [
+        {
+          "area": "scaleEstimation",
+          "depth": 2
+        }
+      ],
+      "contradictions": []
+    }
+  },
+  {
+    "name": "Math Claim (Incorrect)",
+    "message": "With 1M users and 100 requests each, that's roughly 10,000 QPS.",
+    "result": {
+      "newDecisions": [],
+      "mathClaims": [
+        {
+          "expression": "1M users * 100 requests each",
+          "operands": [
+            1000000,
+            100
+          ],
+          "statedResult": 10000000
+        }
+      ],
+      "coverageSignals": [
+        {
+          "area": "scaleEstimation",
+          "depth": 2
+        }
+      ],
+      "contradictions": []
+    }
+  },
+  {
+    "name": "Uncertainty/Signal",
+    "message": "Maybe we should use Redis for caching, I'm not sure yet.",
+    "result": {
+      "newDecisions": [
+        {
+          "component": "cachingStrategy",
+          "choice": "Redis",
+          "reason": "not explicitly stated"
+        }
+      ],
+      "mathClaims": [],
+      "coverageSignals": [
+        {
+          "area": "cachingStrategy",
+          "depth": 1
+        }
+      ],
+      "contradictions": []
+    }
+  },
+  {
+    "name": "Contradiction (Consistency)",
+    "message": "We absolutely need strong consistency for the ledger.",
+    "result": {
+      "newDecisions": [
+        {
+          "component": "database",
+          "choice": "strong consistency",
+          "reason": "ledger requirements"
+        }
+      ],
+      "mathClaims": [],
+      "coverageSignals": [
+        {
+          "area": "databaseDesign",
+          "depth": 2
+        }
+      ],
+      "contradictions": [
+        {
+          "current": "strong consistency",
+          "prior": "availability"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Coverage Signals",
+    "message": "Let's talk about the database schema and how partitioning works.",
+    "result": {
+      "newDecisions": [],
+      "mathClaims": [],
+      "coverageSignals": [
+        {
+          "area": "databaseDesign",
+          "depth": 1
+        }
+      ],
+      "contradictions": []
+    }
+  }
+]

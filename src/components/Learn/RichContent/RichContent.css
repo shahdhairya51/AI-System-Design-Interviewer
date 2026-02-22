@@ -1,0 +1,331 @@
+/* === Rich Content Styles === */
+
+/* Glossary Tooltip */
+.glossary-term {
+    border-bottom: 1px dashed var(--accent-2);
+    cursor: help;
+    position: relative;
+    color: var(--text-primary);
+    transition: color 0.2s;
+}
+
+.glossary-term:hover {
+    color: var(--accent-2);
+}
+
+.glossary-tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    width: 250px;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.2s ease-out;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+}
+
+.glossary-tooltip strong {
+    display: block;
+    color: var(--accent-1);
+    margin-bottom: 4px;
+    font-size: 13px;
+}
+
+.glossary-tooltip p {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Code Tutorial */
+.code-tutorial-container {
+    margin: var(--space-6) 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-secondary);
+}
+
+.tutorial-title {
+    padding: var(--space-4);
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tutorial-split {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    height: 500px;
+}
+
+@media (max-width: 900px) {
+    .tutorial-split {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .tutorial-steps-panel {
+        max-height: 300px;
+        order: -1;
+    }
+}
+
+/* Code Panel */
+.tutorial-code-panel {
+    background: #0d1117;
+    /* GitHub Dark Dimmed */
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid #30363d;
+}
+
+.lang-badge {
+    font-size: 11px;
+    color: #8b949e;
+    font-family: var(--font-mono);
+}
+
+.tutorial-pre {
+    margin: 0;
+    padding: 16px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.code-line {
+    display: flex;
+    padding: 0 16px;
+    color: #e6edf3;
+    border-left: 2px solid transparent;
+}
+
+.code-line:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.code-line.active {
+    background: rgba(56, 139, 253, 0.15);
+    border-left-color: #58a6ff;
+}
+
+.line-num {
+    width: 30px;
+    color: #6e7681;
+    user-select: none;
+    text-align: right;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+.line-content {
+    white-space: pre;
+}
+
+/* Steps Panel */
+.tutorial-steps-panel {
+    border-left: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-tertiary);
+}
+
+.tutorial-steps-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tutorial-steps-header h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.step-counter {
+    background: var(--bg-glass);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+}
+
+.steps-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tutorial-step-card {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0.6;
+}
+
+.tutorial-step-card:hover {
+    opacity: 0.9;
+    border-color: var(--border-subtle);
+}
+
+.tutorial-step-card.active {
+    opacity: 1;
+    background: rgba(232, 67, 147, 0.1);
+    border-color: var(--accent-1);
+    transform: translateX(4px);
+}
+
+.step-marker {
+    width: 24px;
+    height: 24px;
+    background: var(--bg-glass);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.tutorial-step-card.active .step-marker {
+    background: var(--accent-1);
+    color: white;
+}
+
+.step-content h5 {
+    margin: 0 0 4px 0;
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.step-content p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Rich Text Typography */
+.rich-text h2 {
+    font-size: 24px;
+    margin: 32px 0 16px 0;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 8px;
+}
+
+.rich-text h3 {
+    font-size: 18px;
+    margin: 24px 0 12px 0;
+    color: var(--text-accent);
+}
+
+.rich-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    color: #d0d0e0;
+}
+
+.rich-text ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.rich-text li {
+    margin-bottom: 8px;
+    color: #d0d0e0;
+}
+
+.rich-text code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: #ff79c6;
+}
+
+.rich-text pre {
+    background: #1e1e2e;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-subtle);
+}
+
+.rich-text pre code {
+    background: transparent;
+    padding: 0;
+    color: #f8f8f2;
+}
+
+.rich-text blockquote {
+    border-left: 4px solid var(--accent-2);
+    margin: 0 0 20px 0;
+    padding: 12px 20px;
+    background: rgba(253, 121, 168, 0.1);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.faang-insight {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05));
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 24px 0;
+    position: relative;
+}
+
+.faang-insight::before {
+    content: 'FAANG INSTIGHT';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: #f59e0b;
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.faang-insight h4 {
+    color: #fbbf24;
+    margin-top: 0;
+}

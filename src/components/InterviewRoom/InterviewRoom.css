@@ -1,0 +1,663 @@
+/* ============================================
+   Interview Room Styles
+   ============================================ */
+
+.interview-room {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+/* === Header === */
+.ir-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-4);
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 50;
+    gap: var(--space-4);
+    flex-shrink: 0;
+}
+
+.ir-header-left,
+.ir-header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+}
+
+.ir-header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ir-problem-name {
+    font-weight: 700;
+    font-size: var(--text-sm);
+    white-space: nowrap;
+}
+
+/* === Phase Indicator === */
+.ir-phase-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.ir-phase-dot {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    transition: all var(--transition-base);
+    opacity: 0.4;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+}
+
+.ir-phase-dot.active {
+    opacity: 1;
+    background: rgba(232, 67, 147, 0.1) !important;
+    color: #f48fb1 !important;
+    border-color: rgba(232, 67, 147, 0.3);
+    box-shadow: 0 0 15px rgba(232, 67, 147, 0.1);
+}
+
+.ir-phase-dot.completed {
+    opacity: 0.8;
+    color: var(--accent-1);
+}
+
+.ir-phase-dot-icon {
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.ir-phase-dot.active .ir-phase-dot-icon {
+    background: rgba(232, 67, 147, 0.2);
+}
+
+.ir-phase-dot-name {
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* === Timer === */
+.ir-timer {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+}
+
+.ir-timer.warning {
+    color: var(--warning);
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.ir-timer.danger {
+    color: var(--error);
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.1);
+    animation: pulse 1s infinite;
+}
+
+.ir-rec-active {
+    animation: recording-pulse 1.5s infinite;
+    background: rgba(239, 68, 68, 0.15) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+/* === Progress Bar === */
+.ir-progress-bar {
+    height: 3px;
+    background: var(--bg-tertiary);
+    flex-shrink: 0;
+}
+
+.ir-progress-fill {
+    height: 100%;
+    background: var(--accent-gradient);
+    transition: width 1s linear;
+    border-radius: 0 2px 2px 0;
+}
+
+/* === Content (Split) === */
+.ir-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    overflow: hidden;
+}
+
+@media (max-width: 900px) {
+    .ir-content {
+        grid-template-columns: 1fr;
+    }
+
+    .ir-right-panel {
+        display: none;
+    }
+}
+
+/* === Chat Panel === */
+.ir-chat-panel {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+    min-height: 0;
+    /* CRITICAL for scrolling */
+}
+
+.ir-chat-header {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex-shrink: 0;
+}
+
+.ir-chat-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+}
+
+.ir-chat-phase-badge {
+    font-weight: 600;
+    font-size: var(--text-sm);
+}
+
+.ir-chat-phase-hint {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+.ir-speaking-badge {
+    font-size: var(--text-xs);
+    color: var(--accent-2);
+    animation: pulse 1.5s infinite;
+}
+
+/* === Video Preview === */
+.ir-video-preview {
+    position: relative;
+    height: 120px;
+    background: #000;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.ir-video-el {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.ir-video-label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--error);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    animation: pulse 1.5s infinite;
+}
+
+/* === Messages === */
+.ir-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-height: 0;
+    /* CRITICAL for scrolling */
+}
+
+.ir-message {
+    display: flex;
+    gap: var(--space-3);
+    animation: fadeInUp 0.3s ease;
+}
+
+.ir-message.user {
+    flex-direction: row-reverse;
+}
+
+.ir-message-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    background: var(--bg-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-base);
+    flex-shrink: 0;
+    border: 1px solid var(--border-subtle);
+}
+
+.ir-message-content {
+    max-width: 88%;
+}
+
+.ir-message-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.ir-message.user .ir-message-name {
+    text-align: right;
+}
+
+.ir-message-text {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    white-space: pre-wrap;
+}
+
+.ir-message.ai .ir-message-text {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+    border-top-left-radius: var(--radius-sm);
+}
+
+.ir-message.user .ir-message-text {
+    background: rgba(232, 67, 147, 0.15);
+    border: 1px solid rgba(232, 67, 147, 0.2);
+    border-top-right-radius: var(--radius-sm);
+}
+
+.ir-thinking-dots {
+    display: flex;
+    gap: 4px;
+    padding: var(--space-3) var(--space-4);
+}
+
+.ir-thinking-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    animation: pulse 1.4s infinite;
+}
+
+.ir-thinking-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.ir-thinking-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* === Chat Input === */
+.ir-chat-input-area {
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.ir-interim-text {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    padding: var(--space-1) 0;
+    margin-bottom: var(--space-1);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-style: italic;
+}
+
+.ir-mic-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-1);
+    animation: pulse 1s infinite;
+    flex-shrink: 0;
+}
+
+.ir-mic-active {
+    background: rgba(232, 67, 147, 0.2) !important;
+    border: 1px solid var(--accent-1) !important;
+    animation: recording-pulse 1.5s infinite;
+}
+
+.ir-chat-input-row {
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-end;
+}
+
+.ir-chat-input {
+    flex: 1;
+    min-height: 40px;
+    max-height: 120px;
+    resize: none;
+    font-size: var(--text-sm);
+}
+
+.ir-send-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════
+   Right Panel — Tabs (Whiteboard / Code)
+   ═══════════════════════════════════════════ */
+.ir-right-panel {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+/* Tabs bar */
+.ir-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+    flex-shrink: 0;
+    padding: 0 var(--space-2);
+}
+
+.ir-tab {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: var(--space-3) var(--space-4);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.ir-tab:hover {
+    color: var(--text-primary);
+}
+
+.ir-tab.active {
+    color: var(--accent-2);
+    border-bottom-color: var(--accent-1);
+}
+
+.ir-tab-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-left: auto;
+    padding: var(--space-1) 0;
+}
+
+.btn-sm {
+    padding: 4px 6px;
+    font-size: 12px;
+}
+
+/* Whiteboard canvas */
+.ir-right-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.ir-wb-canvas-container {
+    position: absolute;
+    inset: 0;
+}
+
+.ir-wb-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+/* Color picker (inline) */
+.ir-wb-colors {
+    display: flex;
+    gap: 3px;
+    padding: 0 var(--space-1);
+}
+
+.ir-wb-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.ir-wb-color:hover {
+    transform: scale(1.2);
+}
+
+.ir-wb-color.active {
+    border-color: white;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+/* Code editor */
+.ir-code-editor {
+    width: 100%;
+    height: 100%;
+    background: #0d1117;
+    color: #e6edf3;
+    border: none;
+    outline: none;
+    padding: var(--space-4);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    resize: none;
+    tab-size: 2;
+    white-space: pre;
+    overflow: auto;
+}
+
+.ir-code-editor::placeholder {
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.ir-code-editor::selection {
+    background: rgba(232, 67, 147, 0.3);
+}
+
+/* ═══════════════════════════════════════════
+   Modals & Overlays
+   ═══════════════════════════════════════════ */
+.ir-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    animation: fadeIn 0.2s ease;
+}
+
+.ir-modal {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: scaleIn 0.3s ease;
+}
+
+.ir-modal h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+}
+
+.ir-modal p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+}
+
+.ir-modal-actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+}
+
+.ir-pause-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    cursor: pointer;
+    animation: fadeIn 0.3s ease;
+}
+
+.ir-pause-content {
+    text-align: center;
+    animation: scaleIn 0.3s ease;
+}
+
+.ir-pause-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: var(--space-4);
+}
+
+.ir-pause-content h2 {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-2);
+}
+
+.ir-pause-content p {
+    color: var(--text-muted);
+}
+
+/* CC-14: Offline banner */
+.ir-offline-banner {
+    background: rgba(253, 203, 110, 0.1);
+    border: 1px solid rgba(253, 203, 110, 0.3);
+    color: var(--warning);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    text-align: center;
+    margin-bottom: var(--space-2);
+    animation: fadeIn 0.3s ease;
+}
+
+/* System messages (CC-14 offline warning in chat) */
+.ir-message.system .ir-message-text {
+    color: var(--warning);
+    font-style: italic;
+    font-size: var(--text-sm);
+}
+
+.ir-system-msg {
+    color: var(--warning) !important;
+    font-style: italic;
+}
+
+/* Disabled states for CC-12 */
+.ir-chat-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
+/* === Granular Thinking Indicator === */
+.ir-thinking-indicator {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ir-thinking-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+/* === Voice Select === */
+.ir-voice-select {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 4px 8px;
+    font-size: 12px;
+    outline: none;
+    max-width: 120px;
+    cursor: pointer;
+}
+
+.ir-voice-select:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.ir-voice-select option {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
