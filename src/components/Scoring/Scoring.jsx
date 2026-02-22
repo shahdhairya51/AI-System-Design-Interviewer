@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
+import { useAuth } from '../../context/AuthContext'
 import { INTERVIEW_PHASES } from '../../data/questions'
 import { generateAIScoring } from '../../services/aiEngine'
 import { downloadRecording } from '../../services/recorder'
@@ -337,9 +338,9 @@ export default function Scoring({ result, config, onNewInterview, onHome }) {
                     <div className="container">
                         <div className="scoring-nav">
                             <div style={{ width: 80 }} />
-                            <div className="landing-logo">
-                                <span className="landing-logo-icon">◆</span>
-                                <span className="landing-logo-text">DesignDrill</span>
+                            <div className="setup-logo">
+                                <img src="/Logo.png" alt="DesignDrill" className="setup-logo-img" />
+                                <span className="setup-logo-text">DesignDrill</span>
                             </div>
                             <div style={{ width: 80 }} />
                         </div>
@@ -363,9 +364,9 @@ export default function Scoring({ result, config, onNewInterview, onHome }) {
                 <div className="container">
                     <div className="scoring-nav">
                         <button className="btn btn-ghost" onClick={onHome}>← Home</button>
-                        <div className="landing-logo">
-                            <span className="landing-logo-icon">◆</span>
-                            <span className="landing-logo-text">DesignDrill</span>
+                        <div className="setup-logo">
+                            <img src="/Logo.png" alt="DesignDrill" className="setup-logo-img" />
+                            <span className="setup-logo-text">DesignDrill</span>
                         </div>
                         <div style={{ width: 80 }} />
                     </div>

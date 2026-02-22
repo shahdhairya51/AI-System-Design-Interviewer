@@ -13,9 +13,9 @@ export const trackInterviewStart = async (problem) => {
     try {
         const docRef = await addDoc(collection(db, 'telemetry'), {
             sessionId: SESSION_ID,
-            problemId: problem.id,
-            problemTitle: problem.title,
-            type: problem.type, // 'HLD' or 'LLD'
+            problemId: problem?.id || 'unknown',
+            problemTitle: problem?.title || 'Unknown Problem',
+            type: problem?.type || 'N/A', // 'HLD' or 'LLD'
             startTime: serverTimestamp(),
             status: 'started',
             userAgent: navigator.userAgent,

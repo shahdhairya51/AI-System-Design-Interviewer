@@ -25,8 +25,16 @@ export default function Setup({ onStart, onBack }) {
     const handleStart = async () => {
         const problem = mode === 'general' ? selectedQuestion : { id: 'jd-custom', title: 'JD Selection', type };
 
-        // Start telemetry
-        const telemetryId = await trackInterviewStart(problem);
+        // Start telemetry but don't let it block the UI start indefinitely
+        let telemetryId = null;
+        try {
+            // Give telemetry 1.5s max, or continue without it
+            const telemetryPromise = trackInterviewStart(problem);
+            const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(null), 1500));
+            telemetryId = await Promise.race([telemetryPromise, timeoutPromise]);
+        } catch (e) {
+            console.error("Telemetry failed to start", e);
+        }
 
         const config = {
             mode,
