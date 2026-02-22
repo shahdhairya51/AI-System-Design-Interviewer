@@ -129,6 +129,13 @@ export default function Landing({ onStart, onLearn, onDashboard }) {
                         </div>
 
                         <div className="hero-visual animate-fade-in">
+                            <div className="hero-company-logos">
+                                <img src="/meta.png" alt="Meta" className="company-logo" />
+                                <img src="/apple.png" alt="Apple" className="company-logo" />
+                                <img src="/google.png" alt="Google" className="company-logo" />
+                                <img src="/Amazon.png" alt="Amazon" className="company-logo" />
+                                <img src="/netflix.png" alt="Netflix" className="company-logo" />
+                            </div>
                             <div className="video-mockup-frame">
                                 <div className="video-mockup-header">
                                     <div className="video-mockup-dots">
