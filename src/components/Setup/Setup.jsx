@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { HLD_QUESTIONS, LLD_QUESTIONS, COMPANY_STYLES, DIFFICULTY_LEVELS, TIME_OPTIONS } from '../../data/questions'
 import { trackInterviewStart } from '../../services/telemetry'
+import './Setup.css'
 
 export default function Setup({ onStart, onBack }) {
     const [mode, setMode] = useState('general') // 'general' | 'jd'
