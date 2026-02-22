@@ -870,6 +870,7 @@
     padding: 60px 30px;
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 
 .cta-card::after {
